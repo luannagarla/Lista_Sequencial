@@ -10,7 +10,7 @@ void del(int* list, float& percent25, int& sizeFree, int& sizeReal);
 
 int main()
 {
-    int sizeReal = 8; //Capacidade inial de 50  -- alterar após os testes
+    int sizeReal = 8; //Capacidade inial de 50  -- eu vou alterar após os testes
     int sizeFree = sizeReal;
     float percent25 = (sizeReal * 25) / 100;
     int* list = (int*)malloc(sizeReal * sizeof(int));
@@ -46,12 +46,12 @@ int main()
                 break;
             }
             default: {
-                cout << "Opção inválida! Tente novamente." << endl;
+                cout << endl << "***************** Opção inválida! Tente novamente *****************" << endl << endl;
             }
                 
         }
 
-    }while( choice != 3 );
+    }while( choice != 4 );
 
     free(list);
     return 0;
@@ -61,7 +61,8 @@ void resize(int** list, int newSize) {
   
     int* temp = (int*)realloc(*list, newSize * sizeof(int));
     *list = temp; 
-    //parce que toda vez que faço isso ele preenche tudo com lixo
+    
+    //Parece que sobrescreve com lixo
 }
 
 void add(int* list, int value, int& sizeFree, int& size){
@@ -77,27 +78,30 @@ void add(int* list, int value, int& sizeFree, int& size){
         sizeFree--;
     }
     
-    list[sizeFree] = value; //Queria adicionar no inicio da lista
+    for (int i = size - sizeFree; i > 0; i--) {
+        list[i] = list[i - 1];
+    }
+
+    list[0] = value;
 }
 
-void listElements(int* list, int sizeFree, int sizeReal){
-    
-    for(int i = 0; i < sizeReal; i++){
-        cout << i+1 << "° elemento: " << list[i] << endl;
+void listElements(int* list, int sizeFree, int sizeReal) {
+    cout << endl << endl << "Elementos da lista:" << endl;
+    for (int i = 0; i < sizeReal; i++) {
+        cout << i + 1 << "° elemento: " << list[i] << endl;
     }
-    
 }
 
 void del(int* list, float& percent25, int& sizeFree, int& sizeReal){
     if(sizeFree < sizeReal){
         sizeFree++;
-        list[sizeReal] = 0;
+        list[0] = 0;
         
-        int ocupped = sizeReal - sizeFree;
+        int occupied = sizeReal - sizeFree;
         
-        if(ocupped == percent25){
+        if(occupied <= percent25){
             sizeReal = sizeReal / 2;
-            sizeFree = sizeReal - ocupped;
+            sizeFree = sizeReal - occupied;
             
             resize(&list, sizeReal);
             cout << endl << "************ Tamanho da lista diminuiu para metade! ************" << endl << endl;
