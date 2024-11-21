@@ -6,12 +6,13 @@ using namespace std;
 void resize(int** list, int newSize);
 void add(int* list, int value, int& sizeFree, int& size);
 void listElements(int* list, int sizeFree, int sizeReal);
-void del(int* list);
+void del(int* list, float& percent25, int& sizeFree, int& sizeReal);
 
 int main()
 {
-    int sizeReal = 5; //Capacidade inial de 50 
+    int sizeReal = 8; //Capacidade inial de 50  -- alterar após os testes
     int sizeFree = sizeReal;
+    float percent25 = (sizeReal * 25) / 100;
     int* list = (int*)malloc(sizeReal * sizeof(int));
     
     cout << "----------------- INÍCIO DO SISTEMA -----------------" << endl;
@@ -19,7 +20,7 @@ int main()
     int choice;
     do {
         cout << "-----------------------------------------------------" << endl;
-        cout << "O que você deseja fazer?" << endl << "Digite 1 para adicionar item" << endl << "Digite 2 para excluir último item da lista" 
+        cout << "O que você deseja fazer?" << endl << "Digite 1 para adicionar item" << endl << "Digite 2 para excluir o último item da lista" 
         << endl << "Digite 3 para listar os elementos" << endl << "Digite 4 para finalizar o sistema" << endl << "Resposta: ";
         cin >> choice;
 
@@ -33,18 +34,18 @@ int main()
                 break;
             }
             case 2: {                
-                cout << "Opção 2" << endl;
+                del(list, percent25, sizeFree, sizeReal);
                 break;
             }
-            case 3:{
+            case 3: {
                 listElements(list, sizeFree, sizeReal);
                 break;
             }
-            case 4:{
+            case 4: {
                 cout << "Obrigada por utilizar o sistema!" << endl;
                 break;
             }
-            default:{
+            default: {
                 cout << "Opção inválida! Tente novamente." << endl;
             }
                 
@@ -59,7 +60,8 @@ int main()
 void resize(int** list, int newSize) {
   
     int* temp = (int*)realloc(*list, newSize * sizeof(int));
-    *list = temp;
+    *list = temp; 
+    //parce que toda vez que faço isso ele preenche tudo com lixo
 }
 
 void add(int* list, int value, int& sizeFree, int& size){
@@ -75,7 +77,7 @@ void add(int* list, int value, int& sizeFree, int& size){
         sizeFree--;
     }
     
-    list[sizeFree] = value;
+    list[sizeFree] = value; //Queria adicionar no inicio da lista
 }
 
 void listElements(int* list, int sizeFree, int sizeReal){
@@ -86,7 +88,23 @@ void listElements(int* list, int sizeFree, int sizeReal){
     
 }
 
-void del(int* list){
-    // Se for menor que 25% da capacidade máxima: implemente um mecanismo que reduza a capacidade pela metade (função resize) 
-        //Pesquisar se é necessário liberar o espaço alocado anteriormente
+void del(int* list, float& percent25, int& sizeFree, int& sizeReal){
+    if(sizeFree < sizeReal){
+        sizeFree++;
+        list[sizeReal] = 0;
+        
+        int ocupped = sizeReal - sizeFree;
+        
+        if(ocupped == percent25){
+            sizeReal = sizeReal / 2;
+            sizeFree = sizeReal - ocupped;
+            
+            resize(&list, sizeReal);
+            cout << endl << "************ Tamanho da lista diminuiu para metade! ************" << endl << endl;
+        }  
+    }
+    else{
+            cout << endl << "************ NÃO EXISTEM ITENS PARA REMOVER! ************" << endl << endl;
+    }
+    
 }
