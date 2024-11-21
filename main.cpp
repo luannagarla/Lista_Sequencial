@@ -3,16 +3,14 @@
 
 using namespace std;
 
-void resize(int* list, int newSize);
+void resize(int** list, int newSize);
 void add(int* list, int value, int& sizeFree, int& size);
 void listElements(int* list, int sizeFree, int sizeReal);
 void del(int* list);
 
 int main()
 {
-    //Capacidade inial de 50 
-       // loop para o usuario adicionar ou remover itens (ou sair do sistema)
-    int sizeReal = 5;
+    int sizeReal = 5; //Capacidade inial de 50 
     int sizeFree = sizeReal;
     int* list = (int*)malloc(sizeReal * sizeof(int));
     
@@ -38,32 +36,30 @@ int main()
                 cout << "Opção 2" << endl;
                 break;
             }
-            case 3:
+            case 3:{
                 listElements(list, sizeFree, sizeReal);
                 break;
-            case 4:
+            }
+            case 4:{
                 cout << "Obrigada por utilizar o sistema!" << endl;
                 break;
-            default:
+            }
+            default:{
                 cout << "Opção inválida! Tente novamente." << endl;
+            }
+                
         }
 
     }while( choice != 3 );
 
-    // A cada alteração de elemento conferir o tamanho da lista:
-    // Se for maior que 50: a lista deve dobrar de tamanho utilizando alocação dinâmica de memória (função resize)
-    // Se for menor que 25% da capacidade máxima: implemente um mecanismo que reduza a capacidade pela metade (função resize) 
-        //Pesquisar se é necessário liberar o espaço alocado anteriormente
-
-    //Função realloc para redimensionar o vetor de forma dinâmica sem perder os dados armazenados
-    //vetor = realloc(vetor, novo tamanho * sizeof(tipo));
-    
+    free(list);
     return 0;
 }
 
-void resize(int* list, int newSize){
-    int* temp = (int*)realloc(list, newSize * sizeof(int));
-    list = temp;
+void resize(int** list, int newSize) {
+  
+    int* temp = (int*)realloc(*list, newSize * sizeof(int));
+    *list = temp;
 }
 
 void add(int* list, int value, int& sizeFree, int& size){
@@ -72,22 +68,25 @@ void add(int* list, int value, int& sizeFree, int& size){
         size = size * 2;
         sizeFree = size / 2;
         
-        resize(list, size);
-        cout << "***************** Lista dobrou de tamanho! *****************" << endl;
+        resize(&list, size);
+        cout << endl << "***************** Lista dobrou de tamanho! *****************" << endl << endl;
     }
     else{
         sizeFree--;
     }
     
-    list[sizeFree - 1] = value;
+    list[sizeFree] = value;
 }
 
 void listElements(int* list, int sizeFree, int sizeReal){
     
-    
+    for(int i = 0; i < sizeReal; i++){
+        cout << i+1 << "° elemento: " << list[i] << endl;
+    }
     
 }
 
 void del(int* list){
-    
+    // Se for menor que 25% da capacidade máxima: implemente um mecanismo que reduza a capacidade pela metade (função resize) 
+        //Pesquisar se é necessário liberar o espaço alocado anteriormente
 }
