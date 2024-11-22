@@ -24,3 +24,11 @@ Desenvolver uma lista sequencial ordenada em C++ que permita redimensionamento d
 
 *   O arquivo [main.cpp](https://github.com/luannagarla/Lista_Sequencial/blob/main/main.cpp) implementa um teste automatizado de uma lista com redimensionamento dinâmico, permitindo observar seu funcionamento com apenas um clique.
 *   Já o arquivo [crud.cpp](https://github.com/luannagarla/Lista_Sequencial/blob/main/ComCrud/crud.cpp) apresenta uma implementação de CRUD, onde é possível adicionar itens manualmente, acompanhar as operações realizadas e imprimir a lista após cada inserção ou remoção, facilitando o entendimento detalhado do código.
+
+
+Ambos os códigos utilizam a mesma estrutura para gerenciar o redimensionamento da lista, implementando as seguintes funções:
+
+- **`resize`**: Responsável por chamar a função `realloc` para redimensionar a lista.
+- **`add`**: Adiciona um novo elemento à lista e verifica se o número de elementos excede o limite máximo, acionando o redimensionamento caso necessário.
+- **`listElements`**: Exibe todos os elementos presentes na lista.
+- **`del`**: Remove um elemento da lista e verifica se o número de elementos atinge o limite mínimo, acionando a redução do tamanho da lista quando necessário.

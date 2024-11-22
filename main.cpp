@@ -3,10 +3,10 @@
 
 using namespace std;
 
-int* resize(int* list, int newSize, int sizeFree);
-void add(int *list, int value, int &sizeFree, int &size);
+int* resize(int* &list, int newSize, int sizeFree);
+void add(int* &list, int value, int &sizeFree, int &size);
 void listElements(int *list, int sizeFree, int sizeReal);
-void del(int *list, float &percent25, int &sizeFree, int &sizeReal);
+void del(int* &list, float &percent25, int &sizeFree, int &sizeReal);
 
 int main()
 {
@@ -15,7 +15,6 @@ int main()
     float percent25 = (sizeReal * 25) / 100;
     int *list = (int *)malloc(sizeReal * sizeof(int));
 
-    // Inicializa a lista com zeros
     for (int i = 0; i < sizeReal; i++)
         list[i] = 0;
 
@@ -37,7 +36,7 @@ int main()
     listElements(list, sizeFree, sizeReal);
 
     cout << endl << "Teste de remoção de elementos:" << endl;
-    for (int i = 0; i < 55; i++)
+    for (int i = 0; i < 58; i++)
     {
         del(list, percent25, sizeFree, sizeReal);
     }
@@ -50,11 +49,10 @@ int main()
     return 0;
 }
 
-int* resize(int* list, int newSize, int sizeFree)
+int* resize(int* &list, int newSize, int sizeFree)
 {
     int* vetor = (int*)realloc(list, newSize * sizeof(int));
 
-    // Inicializa os novos índices com zero
     for (int i = newSize - sizeFree; i < newSize; i++)
     {
         vetor[i] = 0;
@@ -63,11 +61,11 @@ int* resize(int* list, int newSize, int sizeFree)
     return vetor;
 }
 
-void add(int *list, int value, int &sizeFree, int &size)
+void add(int* &list, int value, int &sizeFree, int &size)
 {
     if (sizeFree == 0)
     {
-        size *= 2;
+        size = size * 2;
         sizeFree = size / 2;
 
         list = resize(list, size, sizeFree);
@@ -94,7 +92,7 @@ void listElements(int *list, int sizeFree, int sizeReal)
     }
 }
 
-void del(int *list, float &percent25, int &sizeFree, int &sizeReal)
+void del(int* &list, float &percent25, int &sizeFree, int &sizeReal)
 {
     if (sizeFree < sizeReal)
     {
@@ -122,6 +120,6 @@ void del(int *list, float &percent25, int &sizeFree, int &sizeReal)
     }
     else
     {
-        cout << "************ NÃO EXISTEl ITENS PARA REMOVER! ************" << endl;
+        cout << "************ NÃO EXISTEM ITENS PARA REMOVER! ************" << endl;
     }
 }

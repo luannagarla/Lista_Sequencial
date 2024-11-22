@@ -10,7 +10,7 @@ void del(int* &list, float &percent25, int &sizeFree, int &sizeReal);
 
 int main()
 {
-    int sizeReal = 8; // Capacidade inial de 50  -- eu vou alterar após os testes
+    int sizeReal = 50; 
     int sizeFree = sizeReal;
     float percent25 = (sizeReal * 25) / 100;
     int *list = (int *)malloc(sizeReal * sizeof(int));
