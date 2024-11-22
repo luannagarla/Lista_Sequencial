@@ -8,7 +8,7 @@ Projeto desenvolvido como parte da disciplina de Estrutura de Dados do curso de 
 
 **:dart: Objetivo** 
 
-Desenvolver uma lista sequencial ordenada em C/C++ que permita redimensionamento dinâmico. A estrutura deve expandir ou reduzir sua capacidade automaticamente com base no número de elementos inseridos ou removidos.
+Desenvolver uma lista sequencial ordenada em C++ que permita redimensionamento dinâmico. A estrutura deve expandir ou reduzir sua capacidade automaticamente com base no número de elementos inseridos ou removidos.
 
 **:clipboard: Especificações**
 
