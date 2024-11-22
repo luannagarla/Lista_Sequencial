@@ -8,42 +8,65 @@ void add(int *list, int value, int &sizeFree, int &size);
 void listElements(int *list, int sizeFree, int sizeReal);
 void del(int *list, float &percent25, int &sizeFree, int &sizeReal);
 
-
 int main()
 {
-    int sizeReal = 50;
+    int sizeReal = 8; // Capacidade inial de 50  -- eu vou alterar após os testes
     int sizeFree = sizeReal;
     float percent25 = (sizeReal * 25) / 100;
     int *list = (int *)malloc(sizeReal * sizeof(int));
 
-    cout << endl << "----------------- INÍCIO DOS TESTES -----------------" << endl << endl;
+    cout << "----------------- INÍCIO DO SISTEMA -----------------" << endl;
 
-    for (int i = 1; i <= 50; i++)
+    int choice;
+    do
     {
-        add(list, i, sizeFree, sizeReal);
-    }
-    cout << endl << "Lista com 50 elementos:" << endl;
-    listElements(list, sizeFree, sizeReal);
-    
-    cout << endl << "Teste de adição de elementos:" << endl;
-    for (int i = 1; i <= 20; i++)
-    {
-        add(list, i, sizeFree, sizeReal);
-    }
-    cout << endl << "Lista com tamanho dobrado:" << endl;
-    listElements(list, sizeFree, sizeReal);
+        cout << "-----------------------------------------------------" << endl;
+        cout << "O que você deseja fazer?" << endl
+             << "Digite 1 para adicionar item" << endl
+             << "Digite 2 para excluir o último item da lista"
+             << endl
+             << "Digite 3 para listar os elementos" << endl
+             << "Digite 4 para finalizar o sistema" << endl
+             << "Resposta: ";
+        cin >> choice;
 
-    cout << endl << "Teste de remoção de elementos:" << endl;
-    for (int i = 0; i < 55; i++)
-    {
-        del(list, percent25, sizeFree, sizeReal);
-    }
-    cout << endl << "Lista com tamanho reduzido pela metade:" << endl;
-    listElements(list, sizeFree, sizeReal);
+        switch (choice)
+        {
+        case 1:
+        {
+            int val;
+            cout << "Digite o valor a ser adicionado: ";
+            cin >> val;
+
+            add(list, val, sizeFree, sizeReal);
+            break;
+        }
+        case 2:
+        {
+            del(list, percent25, sizeFree, sizeReal);
+            break;
+        }
+        case 3:
+        {
+            listElements(list, sizeFree, sizeReal);
+            break;
+        }
+        case 4:
+        {
+            cout << "Obrigada por utilizar o sistema!" << endl;
+            break;
+        }
+        default:
+        {
+            cout << endl
+                 << "***************** Opção inválida! Tente novamente *****************" << endl
+                 << endl;
+        }
+        }
+
+    } while (choice != 4);
 
     free(list);
-    cout << endl <<  "----------------- FIM DOS TESTES -----------------" << endl << endl;
-
     return 0;
 }
 
@@ -57,6 +80,7 @@ int* resize(int* list, int newSize, int sizeFree)
     }
     
     return vetor;
+    //Quando faço o teste de alterar de 8 pra 16, ele coloca lixo em tudo 
 }
 
 void add(int *list, int value, int &sizeFree, int &size)
@@ -89,6 +113,9 @@ void add(int *list, int value, int &sizeFree, int &size)
 
 void listElements(int *list, int sizeFree, int sizeReal)
 {
+    cout << endl
+         << endl
+         << "Elementos da lista:" << endl;
     for (int i = 0; i < sizeReal; i++)
     {
         cout << i + 1 << "° elemento: " << list[i] << endl;
