@@ -22,5 +22,5 @@ Desenvolver uma lista sequencial ordenada em C/C++ que permita redimensionamento
 
 **:question: Sobre o código** 
 
-*   O arquivo [main.cpp](caminho/relativo/arquivo.extensão) implementa um teste automatizado de uma lista com redimensionamento dinâmico, permitindo observar seu funcionamento com apenas um clique.
-*   Já o arquivo [crud.cpp](caminho/relativo/arquivo.extensão) apresenta uma implementação de CRUD, onde é possível adicionar itens manualmente, acompanhar as operações realizadas e imprimir a lista após cada inserção ou remoção, facilitando o entendimento detalhado do código.
+*   O arquivo [main.cpp](https://github.com/luannagarla/Lista_Sequencial/blob/main/main.cpp) implementa um teste automatizado de uma lista com redimensionamento dinâmico, permitindo observar seu funcionamento com apenas um clique.
+*   Já o arquivo [crud.cpp](https://github.com/luannagarla/Lista_Sequencial/blob/main/ComCrud/crud.cpp) apresenta uma implementação de CRUD, onde é possível adicionar itens manualmente, acompanhar as operações realizadas e imprimir a lista após cada inserção ou remoção, facilitando o entendimento detalhado do código.
