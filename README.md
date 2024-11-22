@@ -12,6 +12,15 @@ Desenvolver uma lista sequencial ordenada em C/C++ que permita redimensionamento
 
 **:clipboard: Especificações**
 
-*   A capacidade inicial da lista será de 50 elementos.
-*   Ao atingir sua capacidade máxima (50 elementos), a lista deve dobrar de tamanho utilizando alocação dinâmica de memória.
-*   Para evitar desperdício de memória, implemente um mecanismo que reduza a capacidade pela metade caso o número de elementos caia para 25% da capacidade total.
+- [X]   A capacidade inicial da lista é de 50 elementos.
+- [X]   Ao atingir sua capacidade máxima (50 elementos), a lista dobra de tamanho utilizando alocação dinâmica de memória.
+- [X]   Para evitar desperdício de memória, foi implementado um mecanismo que reduza a capacidade pela metade caso o número de elementos caia para 25% da capacidade total.
+
+
+---
+
+
+**:question: Sobre o código** 
+
+*   O arquivo [main.cpp](caminho/relativo/arquivo.extensão) implementa um teste automatizado de uma lista com redimensionamento dinâmico, permitindo observar seu funcionamento com apenas um clique.
+*   Já o arquivo [crud.cpp](caminho/relativo/arquivo.extensão) apresenta uma implementação de CRUD, onde é possível adicionar itens manualmente, acompanhar as operações realizadas e imprimir a lista após cada inserção ou remoção, facilitando o entendimento detalhado do código.
